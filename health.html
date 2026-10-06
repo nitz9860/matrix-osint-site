@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENDPOINT HEALTH // MATRIX OSINT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <canvas id="matrix-bg"></canvas>
+  
+  <header class="top-bar">
+    <div class="logo">
+      <span class="logo-glyph">▓</span>
+      <span class="logo-text">MATRIX OSINT</span>
+      <span class="logo-version">v1.0.0</span>
+    </div>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">DASHBOARD</a>
+      <a href="/health.html" class="nav-link active">HEALTH</a>
+      <a href="/management.html" class="nav-link">MANAGEMENT</a>
+    </nav>
+    <div class="status-indicators">
+      <div class="status-dot" id="status-conn" title="Connection"></div>
+      <div class="status-dot" id="status-rate" title="Rate Limit"></div>
+      <span class="clock" id="clock">00:00:00</span>
+    </div>
+  </header>
+
+  <main class="container container-health">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <h3 class="section-title">PROVIDERS <span class="provider-count" id="provider-count">0</span></h3>
+        <div class="provider-search">
+          <input type="text" id="provider-filter" placeholder="FILTER..." autocomplete="off">
+          <span class="search-glyph">▌</span>
+        </div>
+        <ul class="provider-list" id="provider-list"></ul>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-title">RECENT QUERIES</h3>
+        <ul class="history-list" id="history-list"></ul>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-title">SYSTEM</h3>
+        <div class="sys-info">
+          <div class="sys-row"><span class="sys-label">UPTIME</span><span class="sys-value" id="sys-uptime">0s</span></div>
+          <div class="sys-row"><span class="sys-label">REQUESTS</span><span class="sys-value" id="sys-requests">0</span></div>
+          <div class="sys-row"><span class="sys-label">ERRORS</span><span class="sys-value" id="sys-errors">0</span></div>
+          <div class="sys-row"><span class="sys-label">RATE LIMIT</span><span class="sys-value" id="sys-ratelimit">--/--</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="main-content main-content-health">
+      <div class="panel-header">
+        <h2 class="panel-title">ENDPOINT HEALTH MONITORING</h2>
+        <div class="panel-actions">
+          <button class="btn btn-ghost" id="btn-refresh-health" title="Refresh Health">⟳ REFRESH</button>
+          <button class="btn btn-primary" id="btn-test-all-global" title="Test All Endpoints">⚡ TEST ALL</button>
+        </div>
+      </div>
+
+      <div class="health-toolbar">
+        <div class="health-filter-wrap">
+          <label class="selector-label">FILTER PROVIDER</label>
+          <select id="health-filter" class="selector">
+            <option value="all">ALL PROVIDERS</option>
+          </select>
+        </div>
+        <div class="health-stats" id="health-stats"></div>
+      </div>
+
+      <div class="endpoint-health-list" id="endpoint-health-list"></div>
+    </section>
+
+    <aside class="sidebar sidebar-right" id="health-detail-sidebar">
+      <div class="sidebar-section">
+        <h3 class="section-title">ENDPOINT DETAILS</h3>
+        <div id="health-detail-content">
+          <div class="placeholder" style="padding:20px; font-size:11px;">
+            <div class="placeholder-glyph">▓</div>
+            <p>SELECT AN ENDPOINT</p>
+            <p class="placeholder-sub">Click any endpoint in the list to view details</p>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-title">HEALTH SUMMARY</h3>
+        <div class="health-summary" id="health-summary"></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-left">MATRIX OSINT // ENDPOINT HEALTH MONITORING</div>
+    <div class="footer-right">KEYS NEVER LEAVE SERVER // RATE LIMITED // AUDIT LOGGED</div>
+  </footer>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script type="module" src="/health.js"></script>
+</body>
+</html>
