@@ -6,7 +6,7 @@
 // ============================================================================
 // CONFIG & STATE
 // ============================================================================
-const API_BASE = '';
+const API_BASE = 'https://matrix-osint-backend-production.up.railway.app';
 let MASTER_KEY = '';
 
 const state = {
